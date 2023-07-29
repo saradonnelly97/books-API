@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const Book = require('../models/books')
 
-// books.get('/seed', (req, res) => {
+// router.get('/seed', (req, res) => {
 //     Book.insertMany([{
 //         "title": "The World Beer Guide",
 //         "description": "The World Beer Guide by Roger Protz is a comprehensive and authoritative reference, providing a diverse and detailed exploration of beers from around the globe, including their history, styles, and brewing techniques.",
@@ -41,20 +41,18 @@ const Book = require('../models/books')
 
 router.get('/', async (req, res) => {
     const books = await Book.find()
-    res.prependOnceListener('index', { books })
+    res.json(books)
 })
 
 router.get('/:id', async (req, res) => {
     const { id } = req.params
-    const book = await Book.findById(id).populate('author')
-    res.render('show', {
-        book
-    })
+    const book = await Book.findById(id)
+    res.json(book)
 })
 
 router.post('/', async (req, res) => {
     await Book.create(req.body)
-    res.status(303).redirect('/books/')
+    res.status(303).redirect('/books')
 })
 
 router.put('/:id', async (req, res) => {

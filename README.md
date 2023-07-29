@@ -23,4 +23,4 @@ Books-API is a place where really great books I think you should read belong. Yo
 
 | PLANNED DATA: | x | x | x | x | x |
 | --- | --- | --- | --- | --- | --- |
-| **Books** | title | book cover image | author | description | genre |
+| **Books** | title | book cover image | author | description | quantity |
